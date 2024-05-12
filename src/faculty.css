@@ -1,0 +1,103 @@
+.left{
+    position: fixed;
+    color: #262726;
+    font-family: thegod;
+    background-color: #cbbeab;
+    margin-top: 350px;
+    margin-left: 10%;
+    width: 35%;
+    border-radius: 20px;
+    padding: 20px;
+    font-size: 30px;
+    animation-name: slide-left;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+
+.left input{
+    background-color: #cbbeab;
+    height: 20px;
+    border: none;
+    border-bottom: 3px solid #262726;
+    font-size: 30px;
+    margin: 20px 0 0;
+    padding: 10px;
+}
+
+.left li{
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0 30px;
+}
+
+.right{
+    position: fixed;
+    margin-top: 500px;
+    background-color: #14fe4f;
+    padding: 20px;
+    width: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 30px;
+    margin-left: 55%;
+    animation-name: slide-right;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+
+.right button{
+    color: white;
+    font-size: 20px;
+    background-color: #14fe4f;
+    border: none;
+    cursor: pointer;
+    font-family: thegod;
+}
+
+@font-face{
+    src: url(Now-Black.ttf);
+    font-family: thegod;
+}
+
+@keyframes slide-left{
+    from{
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to{
+        transform: translateX(0%);
+        opacity: 1;
+    }
+}
+
+@keyframes slide-right{
+    from{
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to{
+        transform: translateX(0%);
+        opacity: 1;
+    }
+}
+
+@keyframes fadein{
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
+
+@keyframes slide-up{
+    from{
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    to{
+        transform: translateY(0%);
+        opacity: 1;
+    }
+}

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <div class="container">
+        <div class="circle"></div>
+        <div class="logo">
+            <img src="DonBoscoTechnicalInstituteMakati.svg.png" alt="">
+        </div>
+        <div class="school">
+            <ul>
+                <li>
+                    <span>Don Bosco Makati</span>
+                </li>
+                <li>
+                    <span>SENIOR HIGHSCHOOL</span>
+                </li>
+            </ul>
+        </div>
+        <div class="login">
+            <ul>
+                <li>
+                    <span class="logintab">Login</span>
+                    <span class="signuptab">Sign-up</span>
+                </li>
+            </ul>
+            <ul>
+                <form action="" method="post">
+                <li>
+                    <span>Student ID:</span><br>
+                    <span><input id="ID" name="ID" type="text" placeholder="Your Student ID"></span>
+                </li>
+                <li>
+                    <span>Password:</span><br>
+                    <span><input id="password" name="password" type="password" placeholder="********"></span>
+                    <span><button onclick="fetching()" type="submit">Sign-In</button></span>
+                    <span id="invalid" style="color: tomato;"></span>
+                </li>
+                </form>
+            </ul>
+        </div>
+    </div>
+</body>
+<script>
+    const invalid = document.getElementById("invalid")
+
+    async function fetching(){
+        try{
+            const data = await fetch('/error/login.html')
+            const value = await data.json()
+            console.log(value.msg)
+            invalid.textContent = value.msg
+        }
+        catch(err){
+            console.log(err)
+        }
+    }
+</script>
+</html>

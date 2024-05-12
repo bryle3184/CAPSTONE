@@ -1,0 +1,154 @@
+body{
+    overflow: hidden;
+}
+
+@font-face{
+    font-family: thegod;
+    src: url(Now-Black.ttf);
+}
+
+@font-face{
+    font-family: theboss;
+    src: url(BrittanySignature.ttf);
+}
+
+.materialshead{
+    padding-top: 300px;
+    display: flex;
+    flex-direction: column;
+    margin: 0 5% 0;
+    overflow: hidden;
+    animation-name: fadein;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+}
+
+.materialshead ul:nth-child(1){
+    background-color: #edb61b;
+    font-family: thegod;
+    width: 100%;
+    font-size: 25px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}  
+
+.materialshead ul:nth-child(1) li{
+    padding: 10px;
+    padding-left: 30px;
+}
+
+.materials{
+    background-color: white;
+    font-family: thegod;
+    margin: 0 5% 0;
+    display: flex;
+    flex-direction: row;
+    padding: 20px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    animation-name: fadein;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+}
+
+.materials ul{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.materials ul:nth-child(1){
+    animation-name: slide-left;
+    animation-duration: 1.5s;
+    animation-fill-mode: forwards;
+}
+
+.materials ul:nth-child(2){
+    animation-name: slide-left;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+}
+
+.materials section{
+    width: 100%;
+    display: flex;
+    flex: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.materials span{
+    background-color: #edb61b;
+    padding: 5px;
+    margin-right: 10px;
+    border-radius: 10px;
+    text-align: center;
+    width: 50%;
+}
+
+.materials li{
+    padding: 2px;
+    width: 100%;
+    margin: 5px;
+}
+
+.materials input{
+    background-color: #edb61b;
+    height: 25px;
+    border-radius: 10px;
+    width: 40%;
+}
+
+.materials button{
+    background-color: #edb61b;
+    height: 30px;
+    border-radius: 10px;
+    width: 90%;
+    cursor: pointer;
+}
+
+@keyframes slide-left{
+    from{
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to{
+        transform: translateX(0%);
+        opacity: 1;
+    }
+}
+
+@keyframes slide-right{
+    from{
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to{
+        transform: translateX(0%);
+        opacity: 1;
+    }
+}
+
+@keyframes fadein{
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
+
+@keyframes slide-up{
+    from{
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    to{
+        transform: translateY(0%);
+        opacity: 1;
+    }
+}
+
+

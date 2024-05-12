@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>infos</h1>
+    <h1 id="test"></h1>
+    <h1 id="test"></h1>
+    <h1 id="test"></h1>
+    <h1 id="test"></h1>
+
+</body>
+<script>
+    const test = document.querySelectorAll("#test")
+
+    async function fetching(){
+        const data = await fetch('/api/infos.html')
+        const info = await data.json()
+        console.log(info.length)
+
+        let i = 0
+
+        while(i < info.length){
+            test[0].textContent = info[i].name
+            test[1].textContent = info[i].section
+            test[2].textContent = convert(new Date(info[i].starttime).getUTCHours(), new Date(info[i].starttime).getMinutes())
+            test[3].textContent = convert(new Date(info[i].endtime).getUTCHours(), new Date(info[i].endtime).getMinutes())
+            i++
+        }
+
+        function convert(hrs, mins){
+            if(hrs <= 12){
+                hrs = `Start Time: ${hrs%12}:${mins}am`
+            }
+            else{
+                hrs = `Start Time: ${hrs%12}:${mins}pm`
+            }
+            return hrs
+        }
+
+    }
+    fetching()
+</script>
+</html>

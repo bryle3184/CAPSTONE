@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="lessons.css">
+</head>
+<body>
+    <div class="container">
+        <div class="school">
+            <ul>
+                <li>
+                    <span>Don Bosco Makati</span>
+                    <span><h1>SENIOR HIGH SCHOOL</h1></span>
+                </li>
+            </ul>
+        </div>
+        <div class="logo">
+            <ul>
+                <li>
+                    <span><img src="DonBoscoTechnicalInstituteMakati.svg.png" alt=""></span>
+                </li>
+            </ul>
+        </div>
+        <form action="" method="post">
+            <div class="info">
+                <ul>
+                    <li>
+                        <span>Reservation Schedule</span>
+                    </li>
+                    <li>
+                        <section>
+                            <span>Student Name:</span><br>
+                            <input type="text" name="studentname" placeholder="Enter Student Name:"><br>
+                        </section>
+                        <section>
+                            <span>Student Section:</span><br>
+                            <input type="text" name="section" placeholder="Enter Student Section:"><br>
+                        </section>
+                    </li>
+                    <li>
+                        <section>
+                            <span>Student Number:</span><br>
+                            <input type="text" name="studentid" placeholder="Enter Student Number:"><br>
+                        </section>
+                        <section>
+                            <span>Time: Start/End</span><br>
+                            <input type="datetime-local" name="starttime" placeholder="Enter Start:"><br>
+                            <input type="datetime-local" name="endtime" placeholder="Enter End:"><br>
+                        </section>
+                    </li>
+                    <li>
+                        <button onclick="occupied()" class="reserve" type="submit">Reserve</button>
+                        <span id="invalid" style="color: tomato;"></span>
+                    </li>
+                </ul>   
+            </div>
+        </form>
+    </div>
+</body>
+<script>
+const invalid = document.getElementById('invalid')
+
+async function occupied(){
+    const data = await fetch('/error/lessons.html')
+    const info = await data.json()
+    invalid.textContent = info.msg
+}
+</script>
+</html>

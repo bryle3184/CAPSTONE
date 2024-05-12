@@ -1,0 +1,175 @@
+body{
+    background-color: black;
+    margin: 0;
+    padding: 0;
+}
+
+body ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+@font-face {
+    font-family: myFont;
+    src: url(BrittanySignature.ttf);
+}
+
+@font-face{
+    font-family: theboss;
+    src: url(Now-Black.ttf);
+}
+
+.circle{
+    background-color: white;
+    height: 100%;
+    width: 600px;
+    position: fixed;
+    border-top-right-radius: 50%;
+    border-bottom-right-radius: 50%;
+    animation-name: slide-left;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+}
+
+.logo img{
+    height: 60%;
+    margin: 0;
+    padding: 0;
+    position: fixed;
+    margin-top: 10%;
+    animation-name: slide-left;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+}
+
+.school{
+    position: fixed;
+    margin-top: 700px;
+    margin-left: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation-name: slide-left;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+}
+
+.school li:nth-child(1) span{
+    font-family: myFont;
+    font-size: 45px;
+    font-weight: 1000;
+    margin-bottom: -30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.school li:nth-child(2) span{
+    font-family: theboss;
+    font-size: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;    
+}
+
+.login{
+    margin-left: 55%;
+    position: fixed;
+    border-radius: 20px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    animation-name: slide-left;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+
+.login span{
+    margin: 10px;
+    font-family: sans-serif;
+    font-size: 17px;
+    font-weight: 800;
+}
+
+.login ul:nth-child(1){
+    padding: 15px 150px 15px;
+    background-color: #efb41d;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+.login input{
+    width: 95%;
+    height: 30px;
+    border-radius: 5px;
+    margin: 10px 0 10px;
+}
+
+.login ul:nth-child(2){
+    padding: 5%;
+    background-color: white;
+    width: 415px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.login ul:nth-child(2) li:nth-child(2) span:nth-child(4){
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login button{
+    background-color: #efb41d;
+    height: 40px;
+    border-radius: 10px;
+    width: 100%;
+}
+
+@keyframes slide-left{
+    from{
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to{
+        transform: translateX(0%);
+        opacity: 1;
+    }
+}
+
+@keyframes slide-right{
+    from{
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to{
+        transform: translateX(0%);
+        opacity: 1;
+    }
+}
+
+@keyframes fadein{
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
+
+@keyframes slide-up{
+    from{
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    to{
+        transform: translateY(0%);
+        opacity: 1;
+    }
+}
+
+
+
