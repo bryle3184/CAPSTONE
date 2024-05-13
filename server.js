@@ -3,6 +3,7 @@ const express = require('express')
 const path = require('path')
 const mongoose = require('mongoose')
 const dotenv = require('dotenv')
+const { start } = require('repl')
 
 const app = express()
 
@@ -91,19 +92,20 @@ app.post('/login.html', async(req, res) => {
 
 app.post('/lessons.html', async(req, res) => {
     const {studentname, section, studentid, starttime, endtime} = req.body
+    console.log(starttime, endtime)
     const occupied = await model2.findOne({starttime:{$lte: new Date(starttime)}, endtime:{$gte: new Date(endtime)}})
 
     console.log(occupied)
 
     if(!occupied){
-        const data = await model2.insertMany({name:studentname, id:studentid, section:section, starttime:new Date(starttime), endtime:new Date(endtime)})
+        const data = await model2.insertMany({name:studentname, id:studentid, section:section, starttime: new Date(starttime), endtime: new Date(endtime) })
 
         console.log(data)
 
         const data1 = await model4.insertMany({name:studentname})
         console.log(data1)
         
-        res.redirect('/materials.html') 
+        res.redirect('/materials.html')
     }
     return
 })

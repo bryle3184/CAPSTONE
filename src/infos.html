@@ -7,40 +7,61 @@
 </head>
 <body>
     <h1>infos</h1>
-    <h1 id="test"></h1>
-    <h1 id="test"></h1>
-    <h1 id="test"></h1>
-    <h1 id="test"></h1>
+    <div class="" id="test">
+
+    </div>
+    
 
 </body>
 <script>
-    const test = document.querySelectorAll("#test")
+    const test = document.getElementById("test")
 
     async function fetching(){
         const data = await fetch('/api/infos.html')
         const info = await data.json()
-        console.log(info.length)
+        console.log(info[0].starttime)
 
         let i = 0
 
         while(i < info.length){
-            test[0].textContent = info[i].name
-            test[1].textContent = info[i].section
-            test[2].textContent = convert(new Date(info[i].starttime).getUTCHours(), new Date(info[i].starttime).getMinutes())
-            test[3].textContent = convert(new Date(info[i].endtime).getUTCHours(), new Date(info[i].endtime).getMinutes())
+            let first = document.createElement('h1')
+            let second = document.createElement('h1')
+            let third = document.createElement('h1')
+            let fourth = document.createElement('h1')
+            let five = document.createElement('h1')
+            let cut = document.createElement('hr')
+            first.textContent = info[i].name
+            second.textContent = info[i].section
+            third.textContent = `Start: ${convert(new Date(info[i].starttime).getHours(), new Date(info[i].starttime).getMinutes())}`
+            fourth.textContent = `End: ${convert(new Date(info[i].endtime).getHours(), new Date(info[i].endtime).getMinutes())}`
+            five.textContent = convertday(info[i].starttime)
+            test.append(first)
+            test.append(second)
+            test.append(third)
+            test.append(fourth)
+            test.append(five)
+            test.append(cut)
             i++
         }
 
-        function convert(hrs, mins){
-            if(hrs <= 12){
-                hrs = `Start Time: ${hrs%12}:${mins}am`
-            }
-            else{
-                hrs = `Start Time: ${hrs%12}:${mins}pm`
-            }
-            return hrs
+        function convertday(date){
+            return `Date: ${new Date(date).getMonth()+1}/${new Date(date).getDate()}/${new Date(date).getFullYear()}`
         }
 
+        function convert(hrs, mins){
+            if(hrs == 12){
+                hrs = `${hrs}:${mins}pm`
+                return hrs
+            }
+            else if(hrs > 12){
+                hrs = `${hrs%12}:${mins}pm`
+                return hrs
+            }
+            else{
+                hrs = `${hrs}:${mins}am`
+                return hrs
+            }
+        }
     }
     fetching()
 </script>
