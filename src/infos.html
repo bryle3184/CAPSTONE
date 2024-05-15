@@ -4,43 +4,57 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="infos.css">
 </head>
 <body>
-    <h1>infos</h1>
-    <div class="" id="test">
+    <h1>Student Reservation Information</h1>
+    <div class="records">
+        <ul>
+            <li>
+                <span>Don Bosco Makati</span>
+            </li>
+        </ul>
+        <ul id="allinsert">
 
+        </ul>
+        <ul>
+            <li>
+                <a href="/faculty.html">Return To Home</a>
+            </li>
+        </ul>
     </div>
-    
-
 </body>
 <script>
-    const test = document.getElementById("test")
+    const allinsert = document.getElementById("allinsert")
 
     async function fetching(){
         const data = await fetch('/api/infos.html')
         const info = await data.json()
-        console.log(info[0].starttime)
 
         let i = 0
 
         while(i < info.length){
-            let first = document.createElement('h1')
-            let second = document.createElement('h1')
-            let third = document.createElement('h1')
-            let fourth = document.createElement('h1')
-            let five = document.createElement('h1')
-            let cut = document.createElement('hr')
-            first.textContent = info[i].name
-            second.textContent = info[i].section
-            third.textContent = `Start: ${convert(new Date(info[i].starttime).getHours(), new Date(info[i].starttime).getMinutes())}`
-            fourth.textContent = `End: ${convert(new Date(info[i].endtime).getHours(), new Date(info[i].endtime).getMinutes())}`
-            five.textContent = convertday(info[i].starttime)
-            test.append(first)
-            test.append(second)
-            test.append(third)
-            test.append(fourth)
-            test.append(five)
-            test.append(cut)
+            let li1 = document.createElement('li')
+            li1.className = 'insert'
+            let span1 = document.createElement('span')
+            let span2 = document.createElement('span')
+            let span3 = document.createElement('span')
+            let span4 = document.createElement('span')
+            let span5 = document.createElement('span')
+            let span6 = document.createElement('span')
+            span1.textContent = info[i].name
+            span2.textContent = info[i].section
+            span3.textContent = `ID: ${info[i].id}`
+            span4.textContent = convertday(info[i].starttime) 
+            span5.textContent = `Start Time: ${convert(new Date(info[i].starttime).getUTCHours(), new Date(info[i].starttime).getMinutes()) }`
+            span6.textContent = `End Time: ${convert(new Date(info[i].endtime).getUTCHours(), new Date(info[i].endtime).getMinutes())}` 
+            allinsert.append(li1)
+            li1.append(span1)
+            li1.append(span2)
+            li1.append(span3)
+            li1.append(span4)
+            li1.append(span5)
+            li1.append(span6)
             i++
         }
 
@@ -49,17 +63,17 @@
         }
 
         function convert(hrs, mins){
-            if(hrs == 12){
-                hrs = `${hrs}:${mins}pm`
-                return hrs
+            if(mins < 10){
+                mins = `0${mins}`
             }
-            else if(hrs > 12){
-                hrs = `${hrs%12}:${mins}pm`
-                return hrs
+            if(hrs < 10){
+                hrs = `0${hrs}`
+            }
+            if(hrs >= 12){
+                return `${hrs%12}:${mins}pm`
             }
             else{
-                hrs = `${hrs}:${mins}am`
-                return hrs
+                return `${hrs}:${mins}am`
             }
         }
     }

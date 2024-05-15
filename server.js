@@ -3,7 +3,6 @@ const express = require('express')
 const path = require('path')
 const mongoose = require('mongoose')
 const dotenv = require('dotenv')
-const { start } = require('repl')
 
 const app = express()
 
@@ -53,22 +52,51 @@ app.use(express.static('./src'))
 app.use(express.json())
 app.use(express.urlencoded({extended:false}))
 
+let studentid,studentpass
+let facultyid,facultypass
+
 app.get('/api/materials.html', async(req, res) => {
     const data = await model3.find()
 
     res.json(data)
 })
 
-app.get('/error/login.html', (req, res) => {
+app.get('/error/login.html', async(req, res) => {
+    const data = await model1.findOne({id:studentid, password:studentpass})
+
+    if(data){
+        res.json({msg:''})
+        return
+    }
     res.json({msg:'Invalid Input!'})
 })
 
-app.get('/error/lessons.html', (req, res) => {
+app.get('/error/login1.html', async(req, res) => {
+    const data = await model5.findOne({id:facultyid,password:facultypass})
+
+    if(data){
+        res.json({msg:''})
+        return
+    }
+    res.json({msg:'Invalid Input!'})
+})
+
+let starts,ends
+
+app.get('/error/lessons.html', async(req, res) => {
+    const data = await model2.findOne({starttime:{$lte: starts}, endtime:{$gte: ends}})
+
+    if(!data){
+        res.json({msg:''})
+        return
+    }
     res.json({msg:'Schedule Occupied'})
 })
 
 app.post('/login1.html', async(req, res) => {
     const {ID, password} = req.body
+    facultyid = ID
+    facultypass = password
     const data = await model5.findOne({id: ID, password: password})
 
     console.log(model5)
@@ -81,6 +109,8 @@ app.post('/login1.html', async(req, res) => {
 
 app.post('/login.html', async(req, res) => {
     const {ID, password} = req.body
+    studentid = ID
+    studentpass = password
     const data = await model1.findOne({id:`${ID}`, password:`${password}`})
 
     if(data){
@@ -92,20 +122,21 @@ app.post('/login.html', async(req, res) => {
 
 app.post('/lessons.html', async(req, res) => {
     const {studentname, section, studentid, starttime, endtime} = req.body
-    console.log(starttime, endtime)
+    starts = new Date(starttime)
+    ends = new Date(endtime)
     const occupied = await model2.findOne({starttime:{$lte: new Date(starttime)}, endtime:{$gte: new Date(endtime)}})
 
     console.log(occupied)
 
     if(!occupied){
-        const data = await model2.insertMany({name:studentname, id:studentid, section:section, starttime: new Date(starttime), endtime: new Date(endtime) })
-
+        const data = await model2.insertMany({name:studentname, id:studentid, section:section, starttime: new Date(starttime), endtime: new Date(endtime)})
         console.log(data)
 
         const data1 = await model4.insertMany({name:studentname})
         console.log(data1)
         
         res.redirect('/materials.html')
+        return
     }
     return
 })
@@ -211,7 +242,7 @@ app.post('/faculty.html', async(req, res) => {
         console.log(data)
         return res.redirect('/infos.html')
     }
-    return res.send('This student has no reservation yet!')
+    return res.send('This student has no reservation yet! <a href="/faculty.html">Return to home</a>')
 })
 
 app.get('/api/infos.html', async(req, res) => {

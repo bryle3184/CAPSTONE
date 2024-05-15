@@ -51,7 +51,7 @@
 
     async function fetching(){
         try{
-            const data = await fetch('/error/login.html')
+            const data = await fetch('/error/login1.html')
             const value = await data.json()
             console.log(value.msg)
             invalid.textContent = value.msg
